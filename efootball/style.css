@@ -36,14 +36,15 @@ html, body {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     padding: 15px 30px;
     border-radius: 10px;
     text-align: center;
     color: white;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .score-board .team {
@@ -65,56 +66,135 @@ html, body {
     color: white;
 }
 
+/* Indicador de Ação */
+.action-indicator {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 20;
+}
+
+.action-box {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 15px;
+    border-radius: 5px;
+    border-left: 3px solid #FF6B6B;
+    color: white;
+    font-size: 12px;
+}
+
+.action-box .label {
+    color: #aaa;
+    margin-right: 5px;
+}
+
+.action-box .value {
+    color: #FF6B6B;
+    font-weight: bold;
+}
+
+/* Power Meter */
+.power-meter {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    width: 150px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FF6B6B;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.power-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D);
+    transition: width 0.1s;
+}
+
+.power-text {
+    position: absolute;
+    top: -25px;
+    right: 0;
+    color: #aaa;
+    font-size: 12px;
+}
+
+/* Stamina Bar */
+.stamina-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #4ECDC4;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 20;
+}
+
+.stamina-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #4ECDC4, #2ECC71);
+}
+
+.stamina-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 30;
+}
+
+/* Instruções */
 .controls-info {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     padding: 15px 20px;
     border-radius: 10px;
     color: #aaa;
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
     max-width: 90%;
 }
 
 .controls-info p {
-    margin: 5px 0;
+    margin: 3px 0;
 }
 
+/* Botões Mobile */
 .mobile-buttons {
     display: none;
     position: absolute;
-    bottom: 40px;
+    bottom: 100px;
     left: 20px;
     right: 20px;
     gap: 10px;
     z-index: 20;
 }
 
-@media (max-width: 768px) {
-    .controls-info {
-        display: none;
-    }
-    
-    .mobile-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-
 .btn-mobile {
     flex: 1;
-    min-width: 70px;
-    padding: 15px 10px;
+    padding: 15px;
     background: rgba(102, 126, 234, 0.8);
     color: white;
     border: none;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     transition: background 0.2s;
     pointer-events: auto;
@@ -126,53 +206,128 @@ html, body {
     transform: scale(0.95);
 }
 
-.btn-up {
-    grid-column: 2;
-    background: #FF6B6B;
-}
-
-.btn-left {
-    background: #4ECDC4;
-}
-
-.btn-right {
-    background: #4ECDC4;
-}
-
-.btn-down {
-    grid-column: 2;
-    background: #FF6B6B;
-}
-
 .btn-shoot {
-    flex: 1;
     background: #2ECC71;
-    font-size: 14px;
+    font-size: 16px;
+    grid-column: 1 / -1;
 }
 
-/* Animações */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+/* Menu de Seleção */
+.selection-menu {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 25;
 }
 
-.game-ui.goal-scored {
-    animation: pulse 0.5s ease-out;
+.menu-group {
+    margin-bottom: 10px;
+}
+
+.menu-group h3 {
+    color: #4ECDC4;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.menu-btn {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px 10px;
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.menu-btn:active {
+    background: #4ECDC4;
+}
+
+/* Notificação de Gol */
+.goal-notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(46, 204, 113, 0.9);
+    color: white;
+    padding: 30px 60px;
+    border-radius: 15px;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 100;
+    animation: goalPulse 0.5s ease-out;
+}
+
+@keyframes goalPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 /* Responsivo */
+@media (max-width: 768px) {
+    .controls-info {
+        display: none;
+    }
+    
+    .mobile-buttons {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .action-indicator {
+        left: 10px;
+        top: 70px;
+    }
+    
+    .action-box {
+        font-size: 10px;
+        padding: 8px 12px;
+    }
+    
+    .power-meter {
+        top: 70px;
+        right: 10px;
+        width: 120px;
+    }
+    
+    .score-board {
+        font-size: 24px;
+        padding: 10px 20px;
+    }
+}
+
 @media (max-width: 480px) {
     .score-board {
-        padding: 10px 20px;
         font-size: 20px;
-        top: 10px;
+        padding: 8px 15px;
     }
     
-    .score-board .team {
-        margin: 0 10px;
+    .action-indicator {
+        top: 65px;
     }
     
-    .separator {
-        margin: 0 5px;
+    .action-box {
+        font-size: 9px;
+        padding: 6px 10px;
     }
 }
