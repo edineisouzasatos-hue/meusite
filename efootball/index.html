@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Football Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    
+    <div class="game-ui">
+        <!-- Placar -->
+        <div class="score-board">
+            <span class="team player" id="playerScore">0</span>
+            <span class="separator">X</span>
+            <span class="team opponent" id="opponentScore">0</span>
+        </div>
+        
+        <!-- Indicador de Ação Selecionada -->
+        <div class="action-indicator">
+            <div class="action-box">
+                <span class="label">Passe:</span>
+                <span class="value" id="passType">Alto (1)</span>
+            </div>
+            <div class="action-box">
+                <span class="label">Chute:</span>
+                <span class="value" id="shotType">Colocado (C)</span>
+            </div>
+            <div class="action-box">
+                <span class="label">Dribble:</span>
+                <span class="value" id="dribbleType">Normal (N)</span>
+            </div>
+        </div>
+        
+        <!-- Power Meter -->
+        <div class="power-meter">
+            <div class="power-bar" id="powerBar"></div>
+            <span class="power-text">Força: <span id="powerValue">0</span>%</span>
+        </div>
+        
+        <!-- Stamina Bar -->
+        <div class="stamina-bar">
+            <div class="stamina-fill" id="staminaFill"></div>
+            <span class="stamina-text">Estamina</span>
+        </div>
+        
+        <!-- Instruções -->
+        <div class="controls-info">
+            <p><strong>TECLADO:</strong> ↑↓←→ ou WASD = Mover</p>
+            <p><strong>PASSES:</strong> 1=Alto | 2=Rasteiro | 3=Prof.Alto | 4=Prof.Rasteiro</p>
+            <p><strong>CHUTES:</strong> C=Colocado | F=Fenomenal | S=Forte | A=Cavadinha</p>
+            <p><strong>DRIBLES:</strong> N=Normal | R=Rápido | D=Corpo | P=Preciso | E=Elastico</p>
+            <p><strong>AÇÃO:</strong> ESPAÇO = Executar | CLIQUE = Objetivo</p>
+        </div>
+        
+        <!-- Botões Mobile -->
+        <div class="mobile-buttons">
+            <button class="btn-mobile btn-up" data-action="up">⬆️</button>
+            <button class="btn-mobile btn-left" data-action="left">⬅️</button>
+            <button class="btn-mobile btn-right" data-action="right">➡️</button>
+            <button class="btn-mobile btn-down" data-action="down">⬇️</button>
+            <button class="btn-mobile btn-shoot" data-action="shoot">⚽ AÇÃO</button>
+        </div>
+        
+        <!-- Menu de Seleção (Mobile) -->
+        <div class="selection-menu">
+            <div class="menu-group">
+                <h3>Passe</h3>
+                <button class="menu-btn" data-pass="1">Alto</button>
+                <button class="menu-btn" data-pass="2">Rasteiro</button>
+                <button class="menu-btn" data-pass="3">Prof.Alto</button>
+                <button class="menu-btn" data-pass="4">Prof.Rasteiro</button>
+            </div>
+            
+            <div class="menu-group">
+                <h3>Chute</h3>
+                <button class="menu-btn" data-shot="c">Colocado</button>
+                <button class="menu-btn" data-shot="f">Fenomenal</button>
+                <button class="menu-btn" data-shot="s">Forte</button>
+                <button class="menu-btn" data-shot="a">Cavadinha</button>
+            </div>
+            
+            <div class="menu-group">
+                <h3>Dribble</h3>
+                <button class="menu-btn" data-dribble="n">Normal</button>
+                <button class="menu-btn" data-dribble="r">Rápido</button>
+                <button class="menu-btn" data-dribble="d">Corpo</button>
+                <button class="menu-btn" data-dribble="p">Preciso</button>
+                <button class="menu-btn" data-dribble="e">Elastico</button>
+            </div>
+        </div>
+        
+        <!-- Notificação de Gol -->
+        <div class="goal-notification" id="goalNotification"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
